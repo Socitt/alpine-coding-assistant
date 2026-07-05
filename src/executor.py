@@ -6,11 +6,12 @@ printing a clear summary of what was done.
 """
 
 import os
+from typing import List
 from src.filesystem import write_file, delete_file, FileSystemError
 from src.parser import Action, WriteAction, DeleteAction
 
 
-def execute_actions(project_path: str, actions: list[Action]) -> None:
+def execute_actions(project_path: str, actions: List[Action]) -> None:
     """
     Apply a list of WriteAction / DeleteAction objects to the project.
 

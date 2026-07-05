@@ -6,6 +6,7 @@ can use to understand the existing codebase before responding.
 """
 
 import os
+from typing import List
 from src.config import (
     MAX_FILE_BYTES,
     MAX_TOTAL_CONTEXT_BYTES,
@@ -30,7 +31,7 @@ def file_tree(project_path: str) -> str:
         tests/
           test_main.py
     """
-    lines: list[str] = []
+    lines: List[str] = []
 
     for root, dirs, files in os.walk(project_path):
         # Skip unwanted dirs in-place so os.walk won't descend into them
@@ -62,7 +63,7 @@ def read_project_files(project_path: str) -> str:
     Files over MAX_FILE_BYTES get a size notice instead of their content.
     Total output is capped at MAX_TOTAL_CONTEXT_BYTES.
     """
-    chunks: list[str] = []
+    chunks: List[str] = []
     total = 0
 
     for root, dirs, files in os.walk(project_path):

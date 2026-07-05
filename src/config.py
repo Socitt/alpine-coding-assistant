@@ -4,6 +4,7 @@ All tunable values live here.
 """
 
 import os
+from typing import Set
 
 # ---------------------------------------------------------------------------
 # Groq API
@@ -30,7 +31,7 @@ MAX_FILE_BYTES: int = 8_000   # files larger than this get a size warning only
 MAX_TOTAL_CONTEXT_BYTES: int = 60_000  # safety cap for total context sent to AI
 
 # File extensions treated as readable text
-TEXT_EXTENSIONS: set[str] = {
+TEXT_EXTENSIONS: Set[str] = {
     ".py", ".js", ".ts", ".jsx", ".tsx",
     ".html", ".css", ".scss",
     ".sh", ".bash", ".zsh",
@@ -42,7 +43,7 @@ TEXT_EXTENSIONS: set[str] = {
 }
 
 # Directories always skipped during scan
-SKIP_DIRS: set[str] = {
+SKIP_DIRS: Set[str] = {
     ".git", "__pycache__", "node_modules", ".venv", "venv",
     "dist", "build", ".mypy_cache", ".pytest_cache",
 }

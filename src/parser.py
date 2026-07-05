@@ -7,7 +7,7 @@ so they can be executed by the file system module.
 
 import re
 from dataclasses import dataclass
-from typing import Literal
+from typing import List, Literal, Optional, Union
 
 
 @dataclass
@@ -23,7 +23,7 @@ class DeleteAction:
     path: str = ""
 
 
-Action = WriteAction | DeleteAction
+Action = Union[WriteAction, DeleteAction]
 
 
 # ---------------------------------------------------------------------------
@@ -49,7 +49,7 @@ _PLAN_BLOCK = re.compile(
 )
 
 
-def extract_plan(text: str) -> str | None:
+def extract_plan(text: str) -> Optional[str]:
     """
     Return the raw PLAN: block text if present, else None.
     """
@@ -57,14 +57,14 @@ def extract_plan(text: str) -> str | None:
     return match.group(0).strip() if match else None
 
 
-def extract_actions(text: str) -> list[Action]:
+def extract_actions(text: str) -> List[Action]:
     """
     Parse FILE and DELETE blocks from the AI response.
 
     Returns a list of WriteAction / DeleteAction objects in document order.
     """
-    actions: list[Action] = []
-    positions: list[tuple[int, Action]] = []
+    actions: List[Action] = []
+    positions: List[tuple] = []
 
     for m in _FILE_BLOCK.finditer(text):
         path = m.group(1).strip()

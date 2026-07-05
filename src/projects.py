@@ -5,6 +5,7 @@ Lists, selects, and creates project workspaces under PROJECTS_DIR.
 """
 
 import os
+from typing import List, Optional
 from src.config import PROJECTS_DIR
 
 
@@ -13,7 +14,7 @@ def ensure_projects_dir() -> None:
     os.makedirs(PROJECTS_DIR, exist_ok=True)
 
 
-def list_projects() -> list[str]:
+def list_projects() -> List[str]:
     """Return sorted list of project folder names."""
     ensure_projects_dir()
     return sorted(
@@ -40,7 +41,7 @@ def create_project(name: str) -> str:
     return path
 
 
-def select_project() -> str | None:
+def select_project() -> Optional[str]:
     """
     Interactive project selector.
 

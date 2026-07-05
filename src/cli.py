@@ -13,6 +13,7 @@ Commands available at the prompt:
 
 import os
 import sys
+from typing import Optional, Tuple
 
 from src.ai import ask, AIError
 from src.history import History
@@ -61,7 +62,7 @@ def _handle_command(
     raw: str,
     project_path: str,
     history: History,
-) -> tuple[str | None, bool]:
+) -> Tuple[Optional[str], bool]:
     """
     Handle a /command line.
 

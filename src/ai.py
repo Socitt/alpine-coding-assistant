@@ -3,6 +3,7 @@ Groq API wrapper.
 Sends conversation history + system prompt and returns the assistant reply.
 """
 
+from typing import Dict, List
 import requests
 
 from src.config import API_KEY, API_URL, MODEL, SYSTEM_PROMPT, TIMEOUT
@@ -12,7 +13,7 @@ class AIError(Exception):
     """Raised when the Groq API returns an unexpected response."""
 
 
-def ask(history: list[dict]) -> str:
+def ask(history: List[Dict]) -> str:
     """
     Send the full conversation history to Groq and return the assistant reply.
 

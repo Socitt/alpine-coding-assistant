@@ -5,6 +5,7 @@ Keeps a rolling window of messages so the AI has context without blowing
 the token limit on a constrained device.
 """
 
+from typing import Dict, List
 from src.config import MAX_TOTAL_CONTEXT_BYTES
 
 # Rough chars-per-token estimate. Conservative to avoid overruns.
@@ -15,7 +16,7 @@ _MAX_HISTORY_CHARS = _MAX_HISTORY_TOKENS * _CHARS_PER_TOKEN
 
 class History:
     def __init__(self) -> None:
-        self._messages: list[dict] = []
+        self._messages: List[Dict] = []
 
     # ------------------------------------------------------------------
     # Public API
@@ -29,7 +30,7 @@ class History:
         self._messages.append({"role": "assistant", "content": content})
         self._trim()
 
-    def get(self) -> list[dict]:
+    def get(self) -> List[Dict]:
         """Return a copy of the current history."""
         return list(self._messages)
 
