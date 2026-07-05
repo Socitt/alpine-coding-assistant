@@ -1,0 +1,3 @@
+# Force shell scripts to always use LF so they run correctly on Alpine/iSH
+*.sh text eol=lf
+install.sh text eol=lf
