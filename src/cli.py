@@ -47,7 +47,7 @@ def _banner(project_path: str) -> None:
     name = os.path.basename(project_path)
     print()
     print("╔══════════════════════════════════════════╗")
-    print("║       Alpine Code Assistant  🏔           ║")
+    print("║         Alpine Code Assistant            ║")
     print("╚══════════════════════════════════════════╝")
     print(f"  Model  : {MODEL}")
     print(f"  Project: {name}")

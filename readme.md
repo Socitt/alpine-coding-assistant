@@ -63,20 +63,32 @@ alpine-code-assistant/
 ```sh
 # Install git and clone
 apk add git
-git clone https://github.com/yourname/alpine-code-assistant
-cd alpine-code-assistant
+git clone https://github.com/Socitt/alpine-coding-assistant
+cd alpine-coding-assistant
 
-# Run the setup script
+# Run the setup script (installs deps + creates the `aca` command)
 sh install.sh
 ```
 
 ### 2. On any Linux / macOS
 
 ```sh
-git clone https://github.com/yourname/alpine-code-assistant
-cd alpine-code-assistant
+git clone https://github.com/Socitt/alpine-coding-assistant
+cd alpine-coding-assistant
+sh install.sh
+```
+
+Or manually:
+
+```sh
 pip3 install -r requirements.txt
-mkdir -p /root/projects   # or set KIRO_PROJECTS_DIR to any path
+
+# Create the global `aca` launcher
+cat > /usr/local/bin/aca << EOF
+#!/bin/sh
+exec python3 "$(pwd)/main.py" "\$@"
+EOF
+chmod +x /usr/local/bin/aca
 ```
 
 ### 3. Set your Groq API key
@@ -97,8 +109,10 @@ source ~/.profile
 ### 4. Run
 
 ```sh
-python3 main.py
+aca
 ```
+
+That's it — `aca` from anywhere in your terminal launches the assistant.
 
 ---
 
